@@ -1,6 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+    // const navigate = useNavigate()
+    const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [id]: value
+        }));
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            if (data.message === "User registered successfully") {
+                alert('Registration successful');
+                // navigate('/')
+
+            } else {
+                alert('Error in Registration');
+            }
+            // Handle success - e.g., show a success message to the user
+        } catch (error) {
+            console.error('Error during registration:', error.message);
+            alert("Enter Valid Data")
+            // Handle error - e.g., show an error message to the user
+        }
+    };
+
     const styles = {
         loginContainer: {
             display: 'flex',
@@ -97,39 +144,58 @@ const Register = () => {
             <div style={styles.loginBox}>
                 <div style={styles.loginForm}>
                     <h1 style={styles.heading}>Register</h1>
-                    <p style={styles.subheading}></p>
                     <div style={styles.inputGroup}>
-                        <label htmlFor="Firstname" style={styles.label}>Firstname</label>
-                        <input type="text" id="Firstname" placeholder="Firstname" style={styles.input} />
+                        <label htmlFor="firstname" style={styles.label}>Firstname</label>
+                        <input
+                            type="text"
+                            id="firstname"
+                            placeholder="Firstname"
+                            style={styles.input}
+                            value={formData.firstname}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div style={styles.inputGroup}>
-                        <label htmlFor="Lastname" style={styles.label}>Lastname</label>
-                        <input type="text" id="Lastname" placeholder="Lastname" style={styles.input} />
+                        <label htmlFor="lastname" style={styles.label}>Lastname</label>
+                        <input
+                            type="text"
+                            id="lastname"
+                            placeholder="Lastname"
+                            style={styles.input}
+                            value={formData.lastname}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div style={styles.inputGroup}>
-                        <label htmlFor="username" style={styles.label}>Username</label>
-                        <input type="text" id="username" placeholder="Username" style={styles.input} />
-                    </div>
-                    <div style={styles.inputGroup}>
-                        <label htmlFor="Email" style={styles.label}>Email</label>
-                        <input type="text" id="Email" placeholder="Email" style={styles.input} />
+                        <label htmlFor="email" style={styles.label}>Email</label>
+                        <input
+                            type="text"
+                            id="email"
+                            placeholder="Email"
+                            style={styles.input}
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div style={styles.inputGroup}>
                         <label htmlFor="password" style={styles.label}>Password</label>
-                        <input type="password" id="password" placeholder="Password" style={styles.input} />
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            style={styles.input}
+                            value={formData.password}
+                            onChange={handleChange}
+                        />
                     </div>
-                    <button style={styles.loginButton}>Register Now</button>
-                
-                    
+                    <button style={styles.loginButton} onClick={handleSubmit}>Register Now</button>
                 </div>
                 <div style={styles.loginImage}>
-                    <img src="./Images/3688.jpg" alt="Person holding tablet" style={styles.image} />
+                    <img src="/register.jpg" alt="Person holding tablet" style={styles.image} />
                 </div>
             </div>
         </div>
     );
 };
-
-
 
 export default Register;

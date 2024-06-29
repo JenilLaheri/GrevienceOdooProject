@@ -1,7 +1,8 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
-
+    const navigate = useNavigate()
     const styles = {
         loginContainer: {
             display: 'flex',
@@ -109,17 +110,7 @@ const Login = () => {
                             <input type="password" id="password" placeholder="Password" style={styles.input} />
                         </div>
                         <button style={styles.loginButton}>Login Now</button>
-                        <p style={styles.subheading}>Login with Others</p>
-                        <div style={styles.socialLogin}>
-                            <button style={styles.socialButton}>
-                                <img src="./Images/google.png" alt="Google Logo" style={styles.socialLogo} />
-                                Login with Google
-                            </button>
-                            <button style={styles.socialButton}>
-                                <img src="./Images/facebook.png" alt="Facebook Logo" style={styles.socialLogo} />
-                                Login with Facebook
-                            </button>
-                        </div>
+                        <p style={styles.subheading} onClick={() => {navigate('/register')}}>Create a Account</p>
                     </div>
                     <div style={styles.loginImage}>
                         <img src="./Images/3688.jpg" alt="Person holding tablet" style={styles.image} />
