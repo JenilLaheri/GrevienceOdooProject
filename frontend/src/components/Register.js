@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom'
-
+import p1 from "../image/20547283_6310507.jpg"
 const Register = () => {
     // const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -191,7 +191,7 @@ const Register = () => {
                     <button style={styles.loginButton} onClick={handleSubmit}>Register Now</button>
                 </div>
                 <div style={styles.loginImage}>
-                    <img src="/register.jpg" alt="Person holding tablet" style={styles.image} />
+                    <img src={p1} alt="Person holding tablet" style={styles.image} />
                 </div>
             </div>
         </div>

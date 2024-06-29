@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -109,7 +109,7 @@ const Login = () => {
                             <label htmlFor="password" style={styles.label}>Password</label>
                             <input type="password" id="password" placeholder="Password" style={styles.input} />
                         </div>
-                        <button style={styles.loginButton}>Login Now</button>
+                        <Link to={'/emp-dashboard'}> <button style={styles.loginButton}>Login Now</button></Link>
                         <p style={styles.subheading} onClick={() => {navigate('/register')}}>Create a Account</p>
                     </div>
                     <div style={styles.loginImage}>
