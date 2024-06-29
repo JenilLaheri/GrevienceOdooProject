@@ -1,5 +1,22 @@
 import React from 'react';
 import { Space, Table, Tag } from 'antd';
+const severities = ['Cosmetic', 'Minor', 'Moderate', 'Major', 'Critical'];
+
+// Color mapping based on severity
+const severityColors = {
+  // 'Cosmetic': 'green',
+  // 'Minor': 'cyan',
+  // 'Moderate': 'blue',
+  // 'Major': 'purple',
+  // 'Critical': 'red',
+
+
+  'Cosmetic': '#00FF00',
+  'Minor': '#FFFF00',
+  'Moderate': '#FFA500',
+  'Major': '#FF0000',
+  'Critical': '#8B0000',
+};
 const columns = [
   {
     title: 'Name',
@@ -23,7 +40,7 @@ const columns = [
     dataIndex: 'tags',
     render: (_, { tags }) => (
       <>
-        {tags.map((tag) => {
+        {/* {tags.map((tag) => {
           let color = tag.length > 5 ? 'geekblue' : 'green';
           if (tag === 'loser') {
             color = 'volcano';
@@ -33,7 +50,16 @@ const columns = [
               {tag.toUpperCase()}
             </Tag>
           );
-        })}
+        })} */}
+
+
+
+
+{severities.map((severity) => (
+        <Tag color={severityColors[severity]} key={severity}>
+          {severity}
+        </Tag>
+      ))}
       </>
     ),
   },
@@ -54,7 +80,7 @@ const data = [
     name: 'John Brown',
     age: 32,
     address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    tags: ['nice', 'developer','asd','asdsd','asdasd','sadasdsd'],
   },
   {
     key: '2',
@@ -71,12 +97,15 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ];
+
+
+
 const TableData = () => {
   return (
-   <>
-   <h1>Gravance List</h1>
-     <Table columns={columns} dataSource={data} />
-   </>
+    <>
+      <h1>Gravance List</h1>
+      <Table columns={columns} dataSource={data} />
+    </>
   )
 }
 

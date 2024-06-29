@@ -66,7 +66,7 @@ const Dashboard = () => {
             textAlign: 'center',
           }}
         >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          Footer content
         </Footer>
       </Layout>
     </Layout>
